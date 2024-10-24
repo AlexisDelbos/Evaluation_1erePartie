@@ -2,6 +2,11 @@ package fr.fms.entities;
 
 public class Customer {
 	
+	@Override
+	public String toString() {
+		return " " + nameCustomer + " , " + surnameCustomer + " , " + emailCustomer + " , " + phoneCustomer + " , " + addressCustomer;
+	}
+
 	private int idCustomer;
 	private String nameCustomer;
 	private String surnameCustomer;

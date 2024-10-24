@@ -11,7 +11,7 @@ public class OrderItemDao implements Dao<OrderItem> {
 
 	@Override
 	public boolean create(OrderItem obj) {
-		String str = "INSERT INTO T_Order_Items (idFormation, Quantity, UnitaryPrice, IdOrder) VALUES (?,?,?,?);";	
+		String str = "INSERT INTO T_Order_Items (idFormation, quantity, unitaryPrice, idOrder) VALUES (?,?,?,?);";	
 		try (PreparedStatement ps = connection.prepareStatement(str)){	
 			ps.setInt(1, obj.getIdFormation());
 			ps.setInt(2, obj.getQuantity());

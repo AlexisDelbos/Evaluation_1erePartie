@@ -36,7 +36,7 @@ public class CustomerDao implements Dao<Customer> {
 
 	@Override
 	public Customer read(int id) {
-		String str = "select * from T_Customers where IdCustomer=?";
+		String str = "select * from T_Customers where idCustomer=?";
 		try(PreparedStatement ps = connection.prepareStatement(str)){
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

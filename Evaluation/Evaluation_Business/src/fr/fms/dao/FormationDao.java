@@ -134,19 +134,20 @@ public class FormationDao implements Dao<Formation> {
 	 */
 	public ArrayList<Formation> readAllByTypeFormation(String t) {
 	    ArrayList<Formation> formations = new ArrayList<>();
-	    String sql = "SELECT * FROM T_formations WHERE typeFormation = ?";
+	    String sql = "SELECT *, nameCategory FROM T_formations INNER JOIN T_category ON T_formations.idCategory = T_category.idCategory WHERE typeFormation = ?";
 	    try (PreparedStatement ps = connection.prepareStatement(sql)) {
 	        ps.setString(1, t);
 	        try (ResultSet rs = ps.executeQuery()) {
 	            while (rs.next()) {
 	                formations.add(new Formation(
-	                    rs.getInt(1), 
-	                    rs.getString(2), 
-	                    rs.getString(3), 
-	                    rs.getInt(4), 
-	                    rs.getString(5), 
-	                    rs.getDouble(6), 
-	                    rs.getInt(9)
+		                    rs.getInt(1), 
+		                    rs.getString(2), 
+		                    rs.getString(3), 
+		                    rs.getInt(4), 
+		                    rs.getString(5), 
+		                    rs.getDouble(6), 
+		                    rs.getInt(7),
+		                    rs.getString("nameCategory")
 	                ));
 	            }
 	        }

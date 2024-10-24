@@ -61,9 +61,7 @@ public class ShopFormation {
 	                removeFormation();
 	                break;
 	            case 8:
-	            	displayCart(true);
-	                // System.out.println("Gestion du passage d'une commande.");
-	                // passOrder(); 
+	            	displayCart(true); 
 	                break;
 	            case 9:
 	            	connection();
@@ -75,23 +73,23 @@ public class ShopFormation {
 	}
 
 	public static void displayMenu() {
-
-
-		System.out.println();
-		if(login != null)	System.out.println("Bonjour : " + login);
+	    System.out.println();
+	    if(login != null) {
+	        System.out.println("👤 Bonjour : " + login);  // Icône utilisateur
+	    }
 	    System.out.println("========= Menu du Shop =========");
-	    System.out.println("1. Afficher toutes les formations");
-	    System.out.println("2. Afficher les formations par catégorie");
-	    System.out.println("3. Rechercher des formations par mot-clé");
-	    System.out.println("4. Afficher les formations en présentiel");
-	    System.out.println("5. Afficher les formations en distanciel");
-	    System.out.println("6. Ajouter un article au panier");
-	    System.out.println("7. Retirer un article du panier");
-	    System.out.println("8. Passer une commande");
-	    System.out.println("9. Se Connecter / Deconnecter ");
+	    System.out.println("1. 📋 Afficher toutes les formations");
+	    System.out.println("2. 📂 Afficher les formations par catégorie");
+	    System.out.println("3. 🔍 Rechercher des formations par mot-clé");
+	    System.out.println("4. 🏫 Afficher les formations en présentiel");
+	    System.out.println("5. 💻 Afficher les formations en distanciel");
+	    System.out.println("6. 🛒 Ajouter un article au panier");
+	    System.out.println("7. 🗑️ Retirer un article du panier");
+	    System.out.println("8. 💳 Passer une commande");
+	    System.out.println("9. 🔐 Se Connecter / Déconnecter");
 	    System.out.print("Choisissez une option : ");
-
 	}
+
     /**
      * Méthode qui affiche toutes les formations disponibles
      */
@@ -145,17 +143,16 @@ public class ShopFormation {
      * Méthode qui affiche les formations par type (présentiel ou distanciel)
      */
     public static void displayFormationsByType(String type) {
-    	 System.out.printf("---------------------------------------------------------------------------------------------------%n");
-     	System.out.printf("%-25s | %-25s | %-25s |%n",COLUMN_ID,COLUMN_NAME,COLUMN_DESCRIPTION);
-     	System.out.printf("---------------------------------------------------------------------------------------------------%n");
-     	business.readAllByTypeFormation(type).forEach( c -> System.out.printf("%-25s | %-25s | %-25s %n",c.getIdFormation(),c.getNameFormation(),c.getDescriptionFormation()));	
-		System.out.printf("------------------------------------------------------------------------------------------------------------------------%n");
+    	System.out.printf("------------------------------------------------" + type.toUpperCase() + "-------------------------------------------------------------------------------%n");
+		System.out.printf("|%-10s | %-15s | %-45s | %-10s | %-10s | %-20s |%n",COLUMN_ID,COLUMN_NAME,COLUMN_DESCRIPTION, COLUMN_DURING, COLUMN_PRICE, COLUMN_CATEGORY);
+		System.out.printf("|-------------------------------------------------------------------------------------------------------------------------------%n");
+		business.readAllByTypeFormation(type).forEach( c -> System.out.printf("|%-10s | %-15s | %-45s | %-10s | %-10s | %-20s |%n",c.getIdFormation(),c.getNameFormation(),c.getDescriptionFormation(),c.getDurationFormation(),c.getPriceFormation(),c.getNameCategory()));	
+		System.out.printf("-------------------------------------------------------------------------------------------------------------------------------%n");
 
     }
 
-    /**
-     * Méthode qui affiche tous les articles en base en centrant le texte 
-     */
+    // Méthode qui affiche tous les articles en base en centrant le texte 
+
     public static void printFormations(List<Formation> formations) {
         System.out.printf("---------------------------------------------------------------------------------------------------------------------%n");
         System.out.printf("%-10s | %-15s | %-50s | %-15s | %-5s | %-5s |%n", 
@@ -253,37 +250,36 @@ public class ShopFormation {
 	 * si l'utilisateur n'existe pas, il lui est proposé d'en créer un
 	 */
 	private static void connection() {
-		if(login != null) {
-			System.out.println("Souhaitez vous vous déconnecter ? Oui/Non");
-			String response = scan.next();
-			if(response.equalsIgnoreCase("Oui")) {
-				System.out.println("A bientôt " + login);
-				login = null;
-				idUser = 0;
-			}				
-		}
-		else {
-			System.out.println("saisissez votre login : ");
-			String log = scan.next();
-			System.out.println("saisissez votre password : ");
-			String pwd = scan.next();
-			
-			int id = authenticate.existUser(log,pwd);
-			if(id > 0)	{
-				login = log;
-				idUser = id;
-			}
-			else {
-				System.out.println("login ou password incorrect");
-				System.out.println("Nouvel utilisateur, pour créer un compte, tapez ok");
-				String ok = scan.next();
-				if(ok.equalsIgnoreCase("ok")) {
-					newUser();
-				}
-			}
-		}
+	    if(login != null) {
+	        System.out.println("🔓 Souhaitez-vous vous déconnecter ? Oui/Non");
+	        String response = scan.next();
+	        if(response.equalsIgnoreCase("Oui")) {
+	            System.out.println("A bientôt 👋 " + login);  // Icône de salutation
+	            login = null;
+	            idUser = 0;
+	        }                
+	    } else {
+	        System.out.println("🔑 saisissez votre login : ");
+	        String log = scan.next();
+	        System.out.println("🔒 saisissez votre password : ");
+	        String pwd = scan.next();
+	        
+	        int id = authenticate.existUser(log,pwd);
+	        if(id > 0) {
+	            login = log;
+	            idUser = id;
+	            System.out.println("✅ Connexion réussie !");
+	        } else {
+	            System.out.println("❌ Login ou password incorrect");
+	            System.out.println("Nouvel utilisateur, pour créer un compte, tapez 'ok'");
+	            String ok = scan.next();
+	            if(ok.equalsIgnoreCase("ok")) {
+	                newUser();
+	            }
+	        }
+	    }
 	}
-	
+
 	/**
 	 * Méthode qui ajoute un nouvel utilisateur en base
 	 */
@@ -304,9 +300,6 @@ public class ShopFormation {
 	// Méthode qui supprime un article du panier
 	 
 	public static void removeFormation() {
-	    if (login == null) {
-	        System.out.println("Vous devez être connecté pour retirer un article du panier.");
-	    } else {
 	        displayCart(false); 
 	        if (business.isCartEmpty()) {
 	            System.out.println("Le panier est vide, aucun article à retirer.");
@@ -316,17 +309,14 @@ public class ShopFormation {
 	        int id = scanInt();
 	        business.rmFromCart(id);
 	        displayCart(false);
-	    }
+	    
 	}
 
 
 	// Méthode qui ajoute un article au panier
 	
 	public static void addFormation() {
-	    if (login == null) {
-	        System.out.println("Vous devez être connecté pour ajouter un article au panier.");
-	    }
-	    if (login != null) { 
+			displayAllFormations();
 	        System.out.println("Selectionner l'id de la formation à ajouter au panier");
 	        int id = scanInt();
 	        Formation formation = business.readOneFormation(id);
@@ -336,7 +326,7 @@ public class ShopFormation {
 	        } else {
 	            System.out.println("La formation n'existe pas");
 	        }
-	    }
+	    
 	}
 
 	// Méthode qui permet de vérifier si c'est un int

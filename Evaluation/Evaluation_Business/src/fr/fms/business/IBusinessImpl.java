@@ -59,6 +59,8 @@ public class IBusinessImpl implements IBusiness {
 				for(Formation formation : cart.values()) {
 					orderItemDao.create(new OrderItem(0, formation.getIdFormation(), formation.getQuantity(),formation.getPriceFormation(), order.getIdOrder()));
 				}
+				return order.getIdOrder();
+
 			}
 		}
 		return 0;
