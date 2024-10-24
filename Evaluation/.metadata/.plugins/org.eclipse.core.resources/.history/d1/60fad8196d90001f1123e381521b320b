@@ -1,0 +1,14 @@
+package fr.fms;
+
+import fr.fms.dao.FormationDao;
+
+public class TestDaoComponent {
+
+	public static void main(String[] args) {
+		
+		FormationDao formation1 = new FormationDao();
+		formation1.searchWithCharacter("a");
+
+	}
+
+}

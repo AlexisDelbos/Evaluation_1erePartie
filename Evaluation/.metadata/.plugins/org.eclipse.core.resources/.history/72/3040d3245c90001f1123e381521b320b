@@ -1,0 +1,31 @@
+package fr.fms.entities;
+
+public class Formation {
+	private int idFormation;
+	private String nameFormation;
+	private String descriptionFormation;
+	public int getIdFormation() {
+		return idFormation;
+	}
+	
+	@Override
+	public String toString() {
+		return "Article [id=" + idFormation + ", nameFormation=" + nameFormation + ", descriptionFormation=" + descriptionFormation +"]";
+	}
+	
+	public void setIdFormation(int idFormation) {
+		this.idFormation = idFormation;
+	}
+	public String getNameFormation() {
+		return nameFormation;
+	}
+	public void setNameFormation(String nameFormation) {
+		this.nameFormation = nameFormation;
+	}
+	public String getDescriptionFormation() {
+		return descriptionFormation;
+	}
+	public void setDescriptionFormation(String descriptionFormation) {
+		this.descriptionFormation = descriptionFormation;
+	}
+}

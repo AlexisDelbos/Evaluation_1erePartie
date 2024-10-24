@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\Users\DelbosA\Documents\Evaluation\.metadata\.plugins\org.eclipse.jdt.core
+163211110.index
+3187046666.index
+1685225214.index
+3427165225.index
+1865797976.index
+3247405266.index

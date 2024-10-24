@@ -1,0 +1,8 @@
+package fr.fms.dao;
+
+public interface Dao<T> {
+	
+	public T read(int idFormation);		
+
+
+}

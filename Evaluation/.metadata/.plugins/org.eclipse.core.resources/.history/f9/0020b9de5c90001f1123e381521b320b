@@ -1,0 +1,96 @@
+package fr.fms.entities;
+
+public class Formation {
+	private int idFormation;
+	private String nameFormation;
+	private String descriptionFormation;
+	private int durationFormation;
+	private int typeFormation;
+	private double priceFormation;	
+	private int nameCategory;
+
+	
+	public Formation(int idFormation, String nameFormation, String descriptionFormation, int durationFormation,
+		int typeFormation, double priceFormation) {
+		this.idFormation = idFormation;
+		this.nameFormation = nameFormation;
+		this.descriptionFormation = descriptionFormation;
+		this.durationFormation = durationFormation;
+		this.typeFormation = typeFormation;
+		this.priceFormation = priceFormation;
+	}
+
+
+	public Formation(int idFormation, String nameFormation, String descriptionFormation, int durationFormation,
+			int typeFormation, double priceFormation, int nameCategory) {
+		this.idFormation = idFormation;
+		this.nameFormation = nameFormation;
+		this.descriptionFormation = descriptionFormation;
+		this.durationFormation = durationFormation;
+		this.typeFormation = typeFormation;
+		this.priceFormation = priceFormation;
+		this.nameCategory = nameCategory;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Article [id=" + idFormation + ", nameFormation=" + nameFormation + ", descriptionFormation=" + descriptionFormation + "durationFormation=" + durationFormation +"typeFormation="+typeFormation + "priceFormation="+ priceFormation +"]";
+	}
+	
+	
+	public int getDurationFormation() {
+		return durationFormation;
+	}
+
+	public void setDurationFormation(int durationFormation) {
+		this.durationFormation = durationFormation;
+	}
+
+	public int getTypeFormation() {
+		return typeFormation;
+	}
+
+	public void setTypeFormation(int typeFormation) {
+		this.typeFormation = typeFormation;
+	}
+
+	public double getPriceFormation() {
+		return priceFormation;
+	}
+
+	public void setPriceFormation(double priceFormation) {
+		this.priceFormation = priceFormation;
+	}
+
+	public int getIdFormation() {
+		return idFormation;
+	}
+	
+	
+	public void setIdFormation(int idFormation) {
+		this.idFormation = idFormation;
+	}
+	public String getNameFormation() {
+		return nameFormation;
+	}
+	public void setNameFormation(String nameFormation) {
+		this.nameFormation = nameFormation;
+	}
+	public String getDescriptionFormation() {
+		return descriptionFormation;
+	}
+	public void setDescriptionFormation(String descriptionFormation) {
+		this.descriptionFormation = descriptionFormation;
+	}
+
+
+	public int getNameCategory() {
+		return nameCategory;
+	}
+
+
+	public void setNameCategory(int nameCategory) {
+		this.nameCategory = nameCategory;
+	}
+}

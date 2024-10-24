@@ -1,0 +1,20 @@
+package fr.fms;
+
+import fr.fms.dao.ArticleDao;
+import fr.fms.dao.FormationDao;
+import fr.fms.entities.Article;
+
+public class TestDaoComponent {
+
+	public static void main(String[] args) {
+		
+		FormationDao formation1 = new FormationDao();
+		System.out.println(formation1.searchWithCharacter("j"));
+		
+		for(Formation formations : new FormationDao().readAll()) {
+			System.out.println(article);
+		}
+
+	}
+
+}

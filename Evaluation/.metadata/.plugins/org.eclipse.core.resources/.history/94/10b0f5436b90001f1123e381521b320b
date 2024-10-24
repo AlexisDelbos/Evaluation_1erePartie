@@ -1,0 +1,75 @@
+package fr.fms.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import fr.fms.entities.Formation;
+
+
+public class FormationDao implements Dao<Formation> {
+	
+	/**
+	 * Méthode qui renvoi toutes les infos d'un article à partir de son id s'il existe dans la table T_formations
+	 * @param id de la formation 
+	 * @return formation si trouvé, null sinon
+	 */
+	@Override
+	public Formation read(int idFormation) {
+		try (Statement statement = connection.createStatement()){
+			String str = "SELECT * FROM T_formations where idFormation=" + idFormation + ";";									
+			ResultSet rs = statement.executeQuery(str);
+			if(rs.next()) return new Formation(rs.getInt(1) , rs.getString(2) , rs.getString(3) , rs.getInt(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
+		} catch (SQLException e) {
+			logger.severe("pb sql sur la lecture d'un article " + e.getMessage());
+		} 	
+		return null;
+	}
+	
+	/**
+	 * Méthode qui renvoi tous les articles de la table T_Articles
+	 * @return liste de formation
+	 */
+	@Override
+	public ArrayList<Formation> readAll() {
+		ArrayList<Formation> articles = new ArrayList<Formation>();
+		String strSql = "SELECT * FROM T_formations";		
+		try(Statement statement = connection.createStatement()){
+			try(ResultSet resultSet = statement.executeQuery(strSql)){ 			
+				while(resultSet.next()) {
+					int rsId = resultSet.getInt(1);	
+					String rsName = resultSet.getString(2);
+					String rsDescription = resultSet.getString(3);
+					int rsDuration = resultSet.getInt(4);	
+					String rsTypeFormation = resultSet.getString(5);
+					double rsPriceFormation = resultSet.getDouble(6);
+					int rsCategoryId = resultSet.getInt(7);
+					
+					articles.add((new Formation(rsId,rsName,rsDescription,rsDuration,rsTypeFormation, rsPriceFormation,rsCategoryId)));						
+				}	
+			}
+		} catch (SQLException e) {
+			logger.severe("pb sql sur revoi de tous articles " + e.getMessage());
+		}	
+		return articles;
+	}
+	/**
+	 * Méthode qui recherche une formation avec une lettre donnée
+	 * @param t 
+	 * @return 
+	 * @return liste d'articles
+	 */
+	@Override
+	public Formation searchWithCharacter(Formation obj) {
+		try(Statement statement = connection.createStatement()){
+			String strSql = "SELECT * FROM T_formations WHERE nameFormation=%"+ obj + "%;";
+			ResultSet rs = statement.executeQuery(strSql);
+			if(rs.next()) return new Formation(rs.getInt(1) , rs.getString(2) , rs.getString(3) , rs.getInt(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
+		} catch (SQLException e) {
+			logger.severe("pb sql sur la recherche d'un article " + e.getMessage());
+		} 	
+		return null;
+	}
+
+}

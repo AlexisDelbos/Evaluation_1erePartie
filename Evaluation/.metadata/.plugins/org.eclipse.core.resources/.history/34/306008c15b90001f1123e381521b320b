@@ -1,0 +1,7 @@
+package fr.fms.entities;
+
+public class Formation {
+	private int idFormation;
+	private String nameFormation;
+	private String descriptionFormation;
+}

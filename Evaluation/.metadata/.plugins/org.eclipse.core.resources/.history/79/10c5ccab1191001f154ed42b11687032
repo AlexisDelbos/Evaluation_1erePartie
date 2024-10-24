@@ -1,0 +1,86 @@
+package fr.fms.business;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import fr.fms.dao.FormationDao;
+import fr.fms.entities.Category;
+import fr.fms.entities.Formation;
+
+
+
+public class IBusinessImpl implements IBusiness {
+	private HashMap<Integer,Formation> cart;
+
+	public IBusinessImpl() {
+		this.cart = new HashMap<Integer,Formation>();
+	}
+	
+	@Override
+	public ArrayList<Formation> readFormationsByCatId(int idCat) {
+	    FormationDao formationDao = new FormationDao();
+	    ArrayList<Formation> formations = formationDao.readAllByCat(idCat);
+	    for (Formation formation : formations) {
+	        System.out.println(formation);
+	    }
+	    return formations;
+	}
+
+	
+	@Override
+	public void addToCart(Formation formation) {
+		Formation formati = cart.get(formation.getIdFormation());
+		if(formati != null) {
+			formati.setQuantity(formati.getQuantity() + 1);
+		}
+		else cart.put(formation.getIdFormation(), formation);		
+	}
+
+	@Override
+	public void rmFromCart(int id) {
+		Formation formation = cart.get(id);
+		if(formation != null) {
+			if(formation.getQuantity() ==1) cart.remove(id);
+			else formation.setQuantity(formation.getQuantity() - 1);
+		}		
+	}
+
+	@Override
+	public int order(int idCustomer) {
+		if(customerDao.read(idCustomer) != null) {
+			double amountTotal = getTotal();
+		}
+		return 0;
+	}
+
+
+	public double getTotal() {
+		double [] total = {0};
+		cart.values().forEach((a) -> total[0] += a.getPriceFormation() * a.getQuantity()); 	
+		return total[0];
+	}
+
+	@Override
+	public ArrayList<Category> readCategories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<Formation> readFormations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Formation readOneFormation(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+
+}

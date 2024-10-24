@@ -1,0 +1,44 @@
+DROP DATABASE IF EXISTS Formation;
+CREATE DATABASE Formation;
+USE Formation;
+
+CREATE TABLE T_category (
+    idCategory INT(4) AUTO_INCREMENT PRIMARY KEY,
+    nameCategory VARCHAR(100) NOT NULL,
+    descriptionCategory VARCHAR(100)
+)ENGINE = InnoDB;
+
+CREATE TABLE T_formations (
+    idFormation INT(4) AUTO_INCREMENT PRIMARY KEY,
+    nameFormation VARCHAR(100) NOT NULL,
+    descriptionFormation VARCHAR(100) NOT NULL,
+    durationFormation INT(4),
+    typeFormation ENUM('presentiel', 'distanciel') NOT NULL,
+    priceFormation FLOAT(8, 2) NOT NULL DEFAULT 0
+
+)ENGINE = InnoDB;
+
+INSERT INTO T_formations (nameFormation, descriptionFormation, durationFormation, typeFormation, priceFormation) VALUES  ('Java', 'Java SE8 : Syntaxe & POO', 20, 'presentiel', 2000.00);
+INSERT INTO T_formations (nameFormation, descriptionFormation, durationFormation, typeFormation, priceFormation) VALUES   ('Java avance', 'Exceptions, fichiers,formation JDBC, threads', 20, 'distanciel', 2500.00);
+INSERT INTO T_formations (nameFormation, descriptionFormation, durationFormation, typeFormation, priceFormation) VALUES    ('Spring', 'Spring Core/MVC/Security', 20, 'presentiel', 2300.00);
+INSERT INTO T_formations (nameFormation, descriptionFormation, durationFormation, typeFormation, priceFormation) VALUES    ('PHP Frameworks', 'Symfony', 15, 'distanciel', 1800.00);
+INSERT INTO T_formations (nameFormation, descriptionFormation, durationFormation, typeFormation, priceFormation) VALUES    ('C#', 'DotNet Core', 20, 'presentiel', 2100.00);
+    
+INSERT INTO T_category (nameCategory, descriptionCategory) VALUES ('Dev Web', 'A sujet des sites web');
+INSERT INTO T_category (nameCategory, descriptionCategory) VALUES ('Cms', 'Site e-commerce');
+INSERT INTO T_category (nameCategory, descriptionCategory) VALUES ('Bureautique', 'Logiciel gestion');
+INSERT INTO T_category (nameCategory, descriptionCategory) VALUES ('IA', 'Gestion & utilisation IA');
+INSERT INTO T_category (nameCategory, descriptionCategory) VALUES ('CyberSecurite', 'Securite reseau');
+
+ALTER TABLE T_formations ADD COLUMN idCategory INT(4);
+ALTER TABLE T_formations ADD FOREIGN KEY(idCategory) REFERENCES T_category(idCategory);
+
+UPDATE T_formations SET idCategory=1 WHERE idFormation=1;
+UPDATE T_formations SET idCategory=2 WHERE idFormation=2;
+UPDATE T_formations SET idCategory=3 WHERE idFormation=3;
+UPDATE T_formations SET idCategory=4 WHERE idFormation=4;
+UPDATE T_formations SET idCategory=5 WHERE idFormation=5;
+
+    
+
+SELECT nameFormation,descriptionFormation,durationFormation,typeFormation,priceFormation,nameCategory FROM T_formations INNER JOIN T_category ON formations.idCategory=category.idCategory;

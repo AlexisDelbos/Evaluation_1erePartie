@@ -1,0 +1,13 @@
+package fr.fms.dao;
+
+import java.util.logging.Logger;
+
+public interface Dao<T> {
+	
+	
+	public static final Logger logger = Logger.getLogger(Dao.class.getName());
+
+	public T read(int idFormation);		
+
+
+}

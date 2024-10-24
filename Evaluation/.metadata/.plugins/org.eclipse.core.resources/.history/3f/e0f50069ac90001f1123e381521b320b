@@ -1,0 +1,80 @@
+package fr.fms.business;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import fr.fms.dao.FormationDao;
+import fr.fms.entities.Article;
+import fr.fms.entities.Category;
+import fr.fms.entities.Formation;
+
+
+
+public class IBusinessImpl implements IBusiness {
+	private HashMap<Integer,Formation> cart;
+
+	
+	@Override
+	public ArrayList<Formation> readFormationsByCatId(int idCat) {
+	    FormationDao formationDao = new FormationDao();
+	    ArrayList<Formation> formations = formationDao.readAllByCat(idCat);
+	    for (Formation formation : formations) {
+	        System.out.println(formation);
+	    }
+	    return formations;
+	}
+
+	@Override
+	public void addToCart(Formation formation) {
+		// TODO Auto-generated method stub
+		Formation for = cart.g
+		
+	}
+
+	@Override
+	public void rmFromCart(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Article> getCart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int order(int idUser) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Article> readArticles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Article readOneArticle(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Category> readCategories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Article> readArticlesByCatId(int idCat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+
+}

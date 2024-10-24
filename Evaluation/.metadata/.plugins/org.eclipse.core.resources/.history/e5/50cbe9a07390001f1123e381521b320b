@@ -1,0 +1,21 @@
+package fr.fms.business;
+
+import java.util.ArrayList;
+
+import fr.fms.dao.Dao;
+import fr.fms.dao.FormationDao;
+import fr.fms.entities.Formation;
+
+
+
+public class IBusinessImpl implements IBusiness {
+	
+	private Dao<Formation> articleDao = DaoFactory.getArticleDao();
+
+	
+	@Override
+	public ArrayList<Formation> readFormationsByCatId(int id) {
+		return ((FormationDao) formationDAO).readAllByCat(id);
+	}
+
+}
